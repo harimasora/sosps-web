@@ -9,19 +9,32 @@
     'ui.router',
 
     'BlurAdmin.pages.dashboard',
+    'BlurAdmin.pages.home',
     'BlurAdmin.pages.ui',
     'BlurAdmin.pages.components',
     'BlurAdmin.pages.form',
     'BlurAdmin.pages.tables',
     'BlurAdmin.pages.charts',
     'BlurAdmin.pages.maps',
+    'BlurAdmin.pages.login',
     'BlurAdmin.pages.profile',
   ])
+
+      .run(["$rootScope", "$state", function($rootScope, $state) {
+        $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+          // We can catch the error thrown when the $requireSignIn promise is rejected
+          // and redirect the user back to the home page
+          if (error === "AUTH_REQUIRED") {
+            $state.go("login");
+          }
+        });
+      }])
+
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/login');
 
     baSidebarServiceProvider.addStaticItem({
       title: 'Pages',

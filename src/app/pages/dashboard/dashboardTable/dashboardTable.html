@@ -1,4 +1,7 @@
 <div class="horizontal-scroll">
+  <div class="add-row-editable-table">
+    <button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/hospitalNewModal.html', 'lg', {})">Novo Operador de Saúde</button>
+  </div>
   <div class="form-group select-page-size-wrap ">
     <label>Linhas por página
       <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
@@ -15,11 +18,11 @@
       <th>Ações</th>
     </tr>
     <tr>
-      <th><input st-search="name" placeholder="Search First Name" class="input-sm form-control search-input"
+      <th><input st-search="name" placeholder="Buscar Nome" class="input-sm form-control search-input"
                  type="search"/></th>
-      <th><input st-search="address" placeholder="Search Last Name" class="input-sm form-control search-input"
+      <th><input st-search="address" placeholder="Buscar Endereço" class="input-sm form-control search-input"
                  type="search"/></th>
-      <th><input st-search="phone" placeholder="Search Username" class="input-sm form-control search-input"
+      <th><input st-search="phone" placeholder="Buscar Telefone" class="input-sm form-control search-input"
                  type="search"/></th>
       <th></th>
     </tr>
@@ -29,7 +32,10 @@
       <td>{{item.name}}</td>
       <td>{{item.address}}</td>
       <td>{{item.phone}}</td>
-      <td><button type="button" class="btn btn-primary" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/hospitalModal.html', 'lg', item)">Editar</button></td>
+      <td>
+        <button type="button" class="btn btn-primary editable-table-button btn-xs" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/hospitalEditModal.html', 'lg', item)">Editar</button>
+        <button type="button" class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/ui/modals/modalTemplates/hospitalRemoveModal.html', 'sm', item)">Deletar</button>
+      </td>
     </tr>
     </tbody>
     <tfoot>

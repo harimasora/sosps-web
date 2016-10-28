@@ -1,0 +1,69 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">{{hospital.name}}</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputId" class="col-sm-2 control-label">ID</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputId" ng-model="hospital.$id" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Nome</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputName" placeholder="Nome do estabelecimento" ng-model="hospital.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress" class="col-sm-2 control-label">Endereço</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputAddress" placeholder="Endereço" ng-model="hospital.address">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPhotoUrl" class="col-sm-2 control-label">URL da imagem</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputPhotoUrl" placeholder="URL da imagem" ng-model="hospital.photoUrl">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputMainPhone" class="col-sm-2 control-label">Telefone principal</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputMainPhone" placeholder="Telefone principal" ng-model="hospital.phone">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputSecondaryPhone" class="col-sm-2 control-label">Telefone secundário</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputSecondaryPhone" placeholder="Telefone secundário" ng-model="hospital.phone2">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputTertiaryPhone" class="col-sm-2 control-label">Telefone terciário</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputTertiaryPhone" placeholder="Telefone terciário" ng-model="hospital.phone3">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputLatitude" class="col-sm-2 control-label">Latitude</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputLatitude" placeholder="Latitude ~ Ex: -15.766456" ng-model="hospital.latitude">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputLongitude" class="col-sm-2 control-label">Longitude</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputLongitude" placeholder="Longitude ~ Ex: -47.874081" ng-model="hospital.longitude">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="save()">Salvar</button>
+  </div>
+</div>

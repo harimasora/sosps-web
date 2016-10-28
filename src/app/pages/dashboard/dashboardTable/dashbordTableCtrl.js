@@ -28,6 +28,17 @@
             });
         };
 
+        $scope.add = function () {
+            $scope.hospitals.$add($scope.hospital)
+                .then(function () {
+                    $scope.modalInstance.close('Create Button Clicked');
+                    toastr.success('Suas informações foram salvas com sucesso!');
+                })
+                .catch(function() {
+                    toastr.error("Suas informações não foram salvas.", 'Erro');
+                })
+        };
+
         $scope.save = function() {
             $scope.hospitals.$save($scope.hospital)
                 .then(function() {
@@ -37,7 +48,18 @@
                 .catch(function() {
                     toastr.error("Suas informações não foram salvas.", 'Erro');
                 })
-        }
+        };
+
+        $scope.remove = function() {
+            $scope.hospitals.$remove($scope.hospital)
+                .then(function() {
+                    $scope.modalInstance.close('Remove Button Clicked');
+                    toastr.error('Item deletado!', 'Aviso');
+                })
+                .catch(function() {
+                    toastr.error("Suas informações não foram salvas.", 'Erro');
+                })
+        };
 
     }
 })();

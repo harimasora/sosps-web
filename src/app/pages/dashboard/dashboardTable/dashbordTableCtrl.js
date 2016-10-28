@@ -9,7 +9,7 @@
         .controller('DashboardTableCtrl', DashboardTableCtrl);
 
     /** @ngInject */
-    function DashboardTableCtrl($scope, $firebaseArray, $uibModal) {
+    function DashboardTableCtrl($scope, $firebaseArray, $uibModal, toastr) {
 
         var ref = firebase.database().ref().child('healthOperators');
         $scope.hospitals = $firebaseArray(ref);
@@ -20,18 +20,24 @@
 
             $scope.hospital = hospital;
 
-            $uibModal.open({
+            return $scope.modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: page,
                 size: size,
-                scope: $scope,
-                resolve: {
-                    items: function () {
-                        return $scope.items;
-                    }
-                }
+                scope: $scope
             });
         };
+
+        $scope.save = function() {
+            $scope.hospitals.$save($scope.hospital)
+                .then(function() {
+                    $scope.modalInstance.close('Save Button Clicked');
+                    toastr.success('Suas informações foram salvas com sucesso!');
+                })
+                .catch(function() {
+                    toastr.error("Suas informações não foram salvas.", 'Erro');
+                })
+        }
 
     }
 })();

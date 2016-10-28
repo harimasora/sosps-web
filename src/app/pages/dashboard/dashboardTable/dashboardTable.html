@@ -9,14 +9,12 @@
   <table class="table" st-safe-src="hospitals" st-table="smartTableData">
     <thead>
     <tr class="sortable ">
-      <th class="table-id" st-sort="id" st-sort-default="true">ID</th>
       <th st-sort="name">Nome</th>
       <th st-sort="address">Endereço</th>
       <th st-sort="phone">Telefone</th>
       <th>Ações</th>
     </tr>
     <tr>
-      <th></th>
       <th><input st-search="name" placeholder="Search First Name" class="input-sm form-control search-input"
                  type="search"/></th>
       <th><input st-search="address" placeholder="Search Last Name" class="input-sm form-control search-input"
@@ -28,11 +26,10 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in smartTableData">
-      <td class="table-id">{{item.$id}}</td>
       <td>{{item.name}}</td>
       <td>{{item.address}}</td>
       <td>{{item.phone}}</td>
-      <td><button type="button" class="btn btn-primary" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/hospitalModal.html', 'md', item)">Editar</button></td>
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/hospitalModal.html', 'lg', item)">Editar</button></td>
     </tr>
     </tbody>
     <tfoot>

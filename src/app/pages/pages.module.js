@@ -30,7 +30,13 @@
         });
       }])
 
-      .config(routeConfig);
+      .config(routeConfig)
+
+      .factory("Auth", ["$firebaseAuth",
+        function($firebaseAuth) {
+          return $firebaseAuth();
+        }
+      ]);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {

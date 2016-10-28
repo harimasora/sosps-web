@@ -13,6 +13,7 @@
       <th st-sort="name">Nome</th>
       <th st-sort="address">Endereço</th>
       <th st-sort="phone">Telefone</th>
+      <th>Ações</th>
     </tr>
     <tr>
       <th></th>
@@ -22,6 +23,7 @@
                  type="search"/></th>
       <th><input st-search="phone" placeholder="Search Username" class="input-sm form-control search-input"
                  type="search"/></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -30,6 +32,7 @@
       <td>{{item.name}}</td>
       <td>{{item.address}}</td>
       <td>{{item.phone}}</td>
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/hospitalModal.html', 'md', item)">Editar</button></td>
     </tr>
     </tbody>
     <tfoot>

@@ -5,13 +5,13 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.dashboard')
-        .controller('DashboardTableCtrl', DashboardTableCtrl);
+    angular.module('BlurAdmin.pages.hospitals')
+        .controller('HospitalsCtrl', HospitalsCtrl);
 
     /** @ngInject */
-    function DashboardTableCtrl($scope, $firebaseArray, $uibModal, toastr) {
+    function HospitalsCtrl($scope, $firebaseArray, $uibModal, toastr) {
 
-        var ref = firebase.database().ref().child('healthOperators');
+        var ref = firebase.database().ref().child('hospitals');
         $scope.hospitals = $firebaseArray(ref);
 
         $scope.smartTablePageSize = 10;

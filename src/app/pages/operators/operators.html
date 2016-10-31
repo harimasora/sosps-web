@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12"
+       ba-panel
+       ba-panel-title="OPERADORES">
+    <div class="horizontal-scroll">
+      <!--<div class="add-row-editable-table">-->
+        <!--<button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/operatorNewModal.html', 'lg', {})">Novo Operador de Saúde</button>-->
+      <!--</div>-->
+      <div class="form-group select-page-size-wrap ">
+        <label>Linhas por página
+          <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                  ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+          </select>
+        </label>
+      </div>
+      <table class="table" st-safe-src="operators" st-table="smartTableData">
+        <thead>
+        <tr class="sortable ">
+          <th st-sort="name">Nome</th>
+          <th st-sort="address">Telefone Primário</th>
+          <th st-sort="phone">Telefone Secundário</th>
+          <th>Ações</th>
+        </tr>
+        <tr>
+          <th><input st-search="name" placeholder="Buscar Nome" class="input-sm form-control search-input"
+                     type="search"/></th>
+          <th><input st-search="phone" placeholder="Buscar Telefone Primário" class="input-sm form-control search-input"
+                     type="search"/></th>
+          <th><input st-search="phone2" placeholder="Buscar Telefone Secundário" class="input-sm form-control search-input"
+                     type="search"/></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in smartTableData">
+          <td>{{item.name}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.phone2}}</td>
+          <td>
+            <button type="button" class="btn btn-primary editable-table-button btn-xs" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/operatorEditModal.html', 'lg', item)">Editar</button>
+            <button type="button" class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/ui/modals/modalTemplates/operatorRemoveModal.html', 'sm', item)">Deletar</button>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="6" class="text-center">
+            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

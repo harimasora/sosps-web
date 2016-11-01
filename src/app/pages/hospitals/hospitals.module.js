@@ -13,7 +13,7 @@
         title: 'Hospitais',
         controller: 'HospitalsCtrl',
         sidebarMeta: {
-          icon: 'ion-stats-bars',
+          icon: 'ion-medkit',
           order: 5,
         },
         resolve: {

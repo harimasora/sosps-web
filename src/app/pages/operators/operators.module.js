@@ -13,7 +13,7 @@
         title: 'Operadores',
         controller: 'OperatorsCtrl',
         sidebarMeta: {
-          icon: 'ion-stats-bars',
+          icon: 'ion-ios-people',
           order: 10,
         },
         resolve: {

@@ -16,46 +16,46 @@
           templateUrl: 'app/pages/maps/maps.html',
           abstract: true,
           title: 'Maps',
-          sidebarMeta: {
-            icon: 'ion-ios-location-outline',
-            order: 500,
-          },
+          //sidebarMeta: {
+          //  icon: 'ion-ios-location-outline',
+          //  order: 500,
+          //},
         })
         .state('dashboard.maps.gmap', {
           url: '/gmap',
           templateUrl: 'app/pages/maps/google-maps/google-maps.html',
           controller: 'GmapPageCtrl',
           title: 'Google Maps',
-          sidebarMeta: {
-            order: 0,
-          },
+          //sidebarMeta: {
+          //  order: 0,
+          //},
         })
         .state('dashboard.maps.leaflet', {
           url: '/leaflet',
           templateUrl: 'app/pages/maps/leaflet/leaflet.html',
           controller: 'LeafletPageCtrl',
           title: 'Leaflet Maps',
-          sidebarMeta: {
-            order: 100,
-          },
+          //sidebarMeta: {
+          //  order: 100,
+          //},
         })
         .state('dashboard.maps.bubble', {
           url: '/bubble',
           templateUrl: 'app/pages/maps/map-bubbles/map-bubbles.html',
           controller: 'MapBubblePageCtrl',
           title: 'Bubble Maps',
-          sidebarMeta: {
-            order: 200,
-          },
+          //sidebarMeta: {
+          //  order: 200,
+          //},
         })
         .state('dashboard.maps.line', {
           url: '/line',
           templateUrl: 'app/pages/maps/map-lines/map-lines.html',
           controller: 'MapLinesPageCtrl',
           title: 'Line Maps',
-          sidebarMeta: {
-            order: 300,
-          },
+          //sidebarMeta: {
+          //  order: 300,
+          //},
         });
   }
 

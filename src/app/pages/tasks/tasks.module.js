@@ -13,7 +13,7 @@
         title: 'Tarefas',
         controller: 'TasksCtrl',
         sidebarMeta: {
-          icon: 'ion-stats-bars',
+          icon: 'ion-ios-list',
           order: 15,
         },
         resolve: {

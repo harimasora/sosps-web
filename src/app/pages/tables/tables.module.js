@@ -17,24 +17,24 @@
           abstract: true,
           controller: 'TablesPageCtrl',
           title: 'Tables',
-          sidebarMeta: {
-            icon: 'ion-grid',
-            order: 300,
-          },
+          //sidebarMeta: {
+          //  icon: 'ion-grid',
+          //  order: 300,
+          //},
         }).state('dashboard.tables.basic', {
           url: '/basic',
           templateUrl: 'app/pages/tables/basic/tables.html',
           title: 'Basic Tables',
-          sidebarMeta: {
-            order: 0,
-          },
+          //sidebarMeta: {
+          //  order: 0,
+          //},
         }).state('dashboard.tables.smart', {
           url: '/smart',
           templateUrl: 'app/pages/tables/smart/tables.html',
           title: 'Smart Tables',
-          sidebarMeta: {
-            order: 100,
-          },
+          //sidebarMeta: {
+          //  order: 100,
+          //},
         });
     $urlRouterProvider.when('/tables','/tables/basic');
   }

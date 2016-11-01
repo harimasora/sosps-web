@@ -28,10 +28,10 @@
           template : '<ui-view></ui-view>',
           abstract: true,
           title: 'UI Features',
-          sidebarMeta: {
-            icon: 'ion-android-laptop',
-            order: 200,
-          },
+          //sidebarMeta: {
+          //  icon: 'ion-android-laptop',
+          //  order: 200,
+          //},
         });
   }
 

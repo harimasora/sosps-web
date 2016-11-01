@@ -26,9 +26,18 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputPhotoUrl" class="col-sm-2 control-label">URL da imagem</label>
+        <label for="inputPhoto" class="col-sm-2 control-label">URL da imagem</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputPhotoUrl" placeholder="URL da imagem" ng-model="hospital.photoUrl">
+          <div ng-if="hospital.photoUrl" class="img-preview">
+            <img ng-src="{{  picture.data ? picture.data : hospital.photoUrl }}">
+          </div>
+          <input type="file" class="form-control" id="inputPhoto" placeholder="Imagem" accept="image/*" ng-file-model="picture">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputWorkingHours" class="col-sm-2 control-label">Horário de Funcionamento</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputWorkingHours" placeholder="24 Horas" ng-model="hospital.workingHours">
         </div>
       </div>
       <div class="form-group">
@@ -59,6 +68,12 @@
         <label for="inputLongitude" class="col-sm-2 control-label">Longitude</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="inputLongitude" placeholder="Longitude ~ Ex: -47.874081" ng-model="hospital.longitude">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDescription" class="col-sm-2 control-label">Descrição</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputDescription" placeholder="Hospital referência em exames clínicos..." ng-model="hospital.description">
         </div>
       </div>
     </form>

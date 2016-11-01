@@ -54,6 +54,7 @@
     "textAngular": "~1.4.6",
     "angular-xeditable": "~0.1.9",
     "ng-js-tree": "~0.0.7",
+    "ng-file-model": "*",
     "angularfire": "^2.1.0"
   },
   "resolutions": {

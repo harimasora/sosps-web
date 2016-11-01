@@ -11,7 +11,7 @@
   /** @ngInject */
   function OperatorsCtrl($scope, $firebaseArray, $uibModal, toastr) {
 
-    var ref = firebase.database().ref().child('healthOperators');
+    var ref = firebase.database().ref().child('humanOperators');
     $scope.operators = $firebaseArray(ref);
 
     $scope.smartTablePageSize = 10;

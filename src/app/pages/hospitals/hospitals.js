@@ -9,7 +9,7 @@
         .controller('HospitalsCtrl', HospitalsCtrl);
 
     /** @ngInject */
-    function HospitalsCtrl($scope, $firebaseArray, $filter, $uibModal, toastr) {
+    function HospitalsCtrl($scope, $firebaseArray, $uibModal, toastr) {
 
         var ref = firebase.database().ref().child('hospitals');
         $scope.hospitals = $firebaseArray(ref);

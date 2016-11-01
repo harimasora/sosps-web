@@ -1,0 +1,53 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">Nova Tarefa</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputHospital" class="col-sm-2 control-label">Hospital</label>
+        <div class="col-sm-10">
+          <select class="form-control selectpicker with-search" data-live-search="true" title="" id="inputHospital" selectpicker
+                  ng-model="task.hospital"
+                  ng-options="item.$id as item.name for item in hospitals">
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputOperator" class="col-sm-2 control-label">Operador</label>
+        <div class="col-sm-10">
+          <select class="form-control selectpicker with-search" data-live-search="true" title="" id="inputOperator" selectpicker
+                  ng-model="task.operator"
+                  ng-options="item.$id as item.name for item in operators">
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputSpecialty" class="col-sm-2 control-label">Especialidade</label>
+        <div class="col-sm-10">
+          <select class="form-control selectpicker with-search" data-live-search="true" title="" id="inputSpecialty" selectpicker
+                  ng-model="task.specialty"
+                  ng-options="i for i in ['Pediatria', 'Adulto']">
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDate" class="col-sm-2 control-label">Data</label>
+        <div class="col-md-10">
+          <p class="input-group">
+            <input id="inputDate" type="text" class="form-control" uib-datepicker-popup ng-model="task.date" is-open="datePopup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDatePopup()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="add()">Criar</button>
+  </div>
+</div>

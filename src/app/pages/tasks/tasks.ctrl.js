@@ -38,7 +38,7 @@
     };
 
     $scope.add = function () {
-      $scope.task.status = false;
+      $scope.task.status = 'Pendente';
       $scope.task.date = $scope.task.date.getTime();
 
       var taskToAdd = $scope.task;
@@ -67,7 +67,7 @@
     $scope.addBulk = function () {
       var selectedSpecialty = $scope.specialties.$getRecord($scope.task.specialty);
 
-      $scope.task.status = false;
+      $scope.task.status = 'Pendente';
       $scope.task.date = $scope.task.date.getTime();
 
       if (selectedSpecialty.hospitals) {

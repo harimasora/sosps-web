@@ -2,12 +2,6 @@
   <div class="col-md-12" ba-panel ba-panel-title="TAREFAS">
     <div class="horizontal-scroll">
       <div class="form-group select-page-size-wrap ">
-        <div class="add-row-editable-table">
-          <button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/taskNewModal.html', 'lg', {})">Nova Tarefa</button>
-        </div>
-        <div class="add-row-editable-table">
-          <button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/taskNewBulkModal.html', 'lg', {})">Novas Tarefas em Lote</button>
-        </div>
         <label>Linhas por página
           <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
                   ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
@@ -19,7 +13,6 @@
         <tr class="sortable ">
           <th st-sort="done">Estado</th>
           <th st-sort="hospital">Hospital</th>
-          <th st-sort="operator">Operador</th>
           <th st-sort="specialty">Especialidade</th>
           <th st-sort="date">Data</th>
           <th st-sort="timeRange">Horário</th>
@@ -40,16 +33,14 @@
         <!--</tr>-->
         </thead>
         <tbody>
-        <tr ng-repeat="item in smartTableData">
+        <tr ng-repeat="item in smartTableData | filter:{ status: '!Concluído'}">
           <td>{{item.status}}</td>
           <td>{{hospitals.$getRecord(item.hospital).name}}</td>
-          <td>{{operators.$getRecord(item.operator).name}}</td>
           <td>{{specialties.$getRecord(item.specialty).name}}</td>
           <td>{{item.date | date:'dd/MM/yyyy'}}</td>
           <td>{{item.timeRange}}</td>
           <td>
-            <button type="button" class="btn btn-primary editable-table-button btn-xs" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/taskEditModal.html', 'lg', item)">Editar</button>
-            <button type="button" class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/ui/modals/modalTemplates/operatorRemoveModal.html', 'sm', item)">Deletar</button>
+            <button type="button" class="btn btn-primary editable-table-button btn-xs" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/taskCompleteModal.html', 'lg', item)">Editar</button>
           </td>
         </tr>
         </tbody>

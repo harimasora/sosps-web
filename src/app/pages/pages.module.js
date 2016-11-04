@@ -13,6 +13,7 @@
     'BlurAdmin.pages.hospitals',
     'BlurAdmin.pages.operators',
     'BlurAdmin.pages.tasks',
+    'BlurAdmin.pages.tasksByOperator',
     'BlurAdmin.pages.ui',
     'BlurAdmin.pages.components',
     'BlurAdmin.pages.form',

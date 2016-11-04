@@ -23,7 +23,16 @@
             // $requireSignIn returns a promise so the resolve waits for it to complete
             // If the promise is rejected, it will throw a $stateChangeError (see above)
             return Auth.$requireSignIn();
-          }]
+          }],
+          "waitForAuth": ["Auth", function (Auth) {
+            // $requireAuth returns a promise so the resolve waits for it to complete
+            // If the promise is rejected, it will throw a $stateChangeError (see above)
+            return Auth.$waitForSignIn();
+          }],
+          //Here i check if a user has admin rights, note that i pass currentAuth and waitForAuth to this function to make sure those are resolves before this function
+          "canAccess": function (currentAuth, waitForAuth, Rights) {
+            return Rights.hasAdminAccess(currentAuth);
+          }
         }
       });
   }

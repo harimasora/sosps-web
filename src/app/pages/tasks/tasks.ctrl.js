@@ -38,7 +38,7 @@
     };
 
     $scope.add = function () {
-      $scope.task.done = false;
+      $scope.task.status = false;
       $scope.task.date = $scope.task.date.getTime();
       $scope.tasks.$add($scope.task)
         .then(function (ref) {
@@ -54,8 +54,8 @@
               $scope.operatorTask.hospital = $scope.task.hospital;
               $scope.operatorTask.specialty = $scope.task.specialty;
               $scope.operatorTask.date = $scope.task.date;
-              $scope.operatorTask.done = $scope.task.status;
-              $scope.operatorTask.done = $scope.task.timeRange;
+              $scope.operatorTask.status = $scope.task.status;
+              $scope.operatorTask.timeRange = $scope.task.timeRange;
 
               $scope.operatorTask.$save()
                 .then(function() {
@@ -70,6 +70,44 @@
         .catch(function() {
           toastr.error("Suas informações não foram salvas.", 'Erro');
         })
+    };
+
+    $scope.addBulk = function () {
+      var selectedSpecialty = $scope.specialties.$getRecord($scope.task.specialty);
+
+      $scope.task.status = false;
+      $scope.task.date = $scope.task.date.getTime();
+
+      if (selectedSpecialty.hospitals) {
+        var keys = Object.keys(selectedSpecialty.hospitals);
+
+        for (var i=0; i<keys.length; i++) {
+          var hospitalId = keys[i];
+          var taskToAdd = $scope.task;
+          taskToAdd.hospital = hospitalId;
+
+          $scope.tasks.$add(taskToAdd)
+            .then(function (ref) {
+              operatorsRef.child(taskToAdd.operator).child('tasks').child(ref.key).set({
+                hospital: taskToAdd.hospital,
+                specialty: taskToAdd.specialty,
+                date: taskToAdd.date,
+                status: taskToAdd.status,
+                timeRange: taskToAdd.timeRange
+              }).then(function() {
+                  toastr.success('Suas informações foram salvas com sucesso!');
+                })
+                .catch(function() {
+                  toastr.error("Suas informações não foram salvas.", 'Erro');
+                })
+            })
+            .catch(function() {
+              toastr.error("Suas informações não foram salvas.", 'Erro');
+            })
+        }
+
+        $scope.modalInstance.close('Create Button Clicked');
+      }
     };
 
     $scope.save = function() {

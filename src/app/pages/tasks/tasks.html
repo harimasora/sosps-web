@@ -5,6 +5,9 @@
         <div class="add-row-editable-table">
           <button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/taskNewModal.html', 'lg', {})">Nova Tarefa</button>
         </div>
+        <div class="add-row-editable-table">
+          <button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/taskNewBulkModal.html', 'lg', {})">Novas Tarefas em Lote</button>
+        </div>
         <label>Linhas por página
           <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
                   ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
@@ -38,7 +41,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in smartTableData">
-          <td>{{item.done}}</td>
+          <td>{{item.status}}</td>
           <td>{{hospitals.$getRecord(item.hospital).name}}</td>
           <td>{{operators.$getRecord(item.operator).name}}</td>
           <td>{{specialties.$getRecord(item.specialty).name}}</td>

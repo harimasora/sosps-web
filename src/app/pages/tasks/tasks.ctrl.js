@@ -20,6 +20,9 @@
     var operatorsRef = firebase.database().ref().child('humanOperators');
     $scope.operators = $firebaseArray(operatorsRef);
 
+    var specialtiesRef = firebase.database().ref().child('specialties');
+    $scope.specialties = $firebaseArray(specialtiesRef);
+
     $scope.smartTablePageSize = 10;
 
     $scope.open = function (page, size, item) {
@@ -51,7 +54,8 @@
               $scope.operatorTask.hospital = $scope.task.hospital;
               $scope.operatorTask.specialty = $scope.task.specialty;
               $scope.operatorTask.date = $scope.task.date;
-              $scope.operatorTask.done = $scope.task.done;
+              $scope.operatorTask.done = $scope.task.status;
+              $scope.operatorTask.done = $scope.task.timeRange;
 
               $scope.operatorTask.$save()
                 .then(function() {
@@ -83,7 +87,8 @@
               $scope.operatorTask.hospital = $scope.task.hospital;
               $scope.operatorTask.specialty = $scope.task.specialty;
               $scope.operatorTask.date = $scope.task.date;
-              $scope.operatorTask.done = $scope.task.done;
+              $scope.operatorTask.done = $scope.task.status;
+              $scope.operatorTask.done = $scope.task.timeRange;
 
               $scope.operatorTask.$save()
                 .then(function() {

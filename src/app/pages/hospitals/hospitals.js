@@ -14,6 +14,9 @@
         var ref = firebase.database().ref().child('hospitals');
         $scope.hospitals = $firebaseArray(ref);
 
+        var specialtiesRef = firebase.database().ref().child('specialties');
+        $scope.specialties = $firebaseArray(specialtiesRef);
+
         $scope.smartTablePageSize = 10;
 
         $scope.open = function (page, size, hospital) {
@@ -32,6 +35,7 @@
             $scope.hospitals.$add($scope.hospital)
                 .then(function (ref) {
                   $scope.hospital = $scope.hospitals.$getRecord(ref.key);
+                  setSpecialties($scope.hospital.$id);
                   //Upload image (if any) then save
                   $scope.uploadFile();
                 })
@@ -41,11 +45,13 @@
         };
 
         $scope.save = function() {
+            setSpecialties($scope.hospital.$id);
             //Upload image (if any) then save
             $scope.uploadFile();
         };
 
         $scope.remove = function() {
+            removceFromSpecialties($scope.hospital.$id);
             $scope.hospitals.$remove($scope.hospital)
                 .then(function() {
                     $scope.modalInstance.close('Remove Button Clicked');
@@ -121,6 +127,43 @@
 
         function hospitalPhoto(uid) {
           return firebase.storage().ref('hospitalsPhotos').child(uid).child('photo.png');
+        }
+
+        function setSpecialties(hospitalId) {
+          if ($scope.hospital.specialties) {
+            var keys = Object.keys($scope.hospital.specialties);
+            for (var i=0; i < keys.length; i++) {
+              var key = keys[i];
+              var rootSpecialty = $scope.specialties.$getRecord(key);
+              if ($scope.hospital.specialties[key] == true) {
+                if (rootSpecialty.hospitals) {
+                  rootSpecialty.hospitals[hospitalId] = true;
+                } else {
+                  rootSpecialty.hospitals = {};
+                  rootSpecialty.hospitals[hospitalId] = true
+                }
+              } else {
+                if (rootSpecialty.hospitals) {
+                  rootSpecialty.hospitals[hospitalId] = null;
+                }
+              }
+              $scope.specialties.$save(rootSpecialty);
+            }
+          }
+        }
+
+        function removceFromSpecialties(hospitalId) {
+          if ($scope.hospital.specialties) {
+            var keys = Object.keys($scope.hospital.specialties);
+            for (var i=0; i < keys.length; i++) {
+              var key = keys[i];
+              var rootSpecialty = $scope.specialties.$getRecord(key);
+              if ($scope.hospital.specialties[key] == true && rootSpecialty.hospitals) {
+                rootSpecialty.hospitals[hospitalId] = null;
+              }
+              $scope.specialties.$save(rootSpecialty);
+            }
+          }
         }
 
     }

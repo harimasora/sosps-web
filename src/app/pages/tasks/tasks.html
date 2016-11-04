@@ -19,6 +19,7 @@
           <th st-sort="operator">Operador</th>
           <th st-sort="specialty">Especialidade</th>
           <th st-sort="date">Data</th>
+          <th st-sort="timeRange">Horário</th>
           <th>Ações</th>
         </tr>
         <!--<tr>-->
@@ -40,8 +41,9 @@
           <td>{{item.done}}</td>
           <td>{{hospitals.$getRecord(item.hospital).name}}</td>
           <td>{{operators.$getRecord(item.operator).name}}</td>
-          <td>{{item.specialty}}</td>
+          <td>{{specialties.$getRecord(item.specialty).name}}</td>
           <td>{{item.date | date:'dd/MM/yyyy'}}</td>
+          <td>{{item.timeRange}}</td>
           <td>
             <button type="button" class="btn btn-primary editable-table-button btn-xs" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/taskEditModal.html', 'lg', item)">Editar</button>
             <button type="button" class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/ui/modals/modalTemplates/operatorRemoveModal.html', 'sm', item)">Deletar</button>

@@ -40,32 +40,24 @@
     $scope.add = function () {
       $scope.task.status = false;
       $scope.task.date = $scope.task.date.getTime();
-      $scope.tasks.$add($scope.task)
+
+      var taskToAdd = $scope.task;
+
+      $scope.tasks.$add(taskToAdd)
         .then(function (ref) {
-          var operatorTaskRef = operatorsRef.child($scope.task.operator).child('tasks').child(ref.key);
-          $scope.operatorTask = $firebaseObject(operatorTaskRef);
-
-          $scope.operatorTask.$loaded()
-            .then(function() {
-              // Remove unnecessary key
-              $scope.task.operator = null;
-
-              // Add task to operator
-              $scope.operatorTask.hospital = $scope.task.hospital;
-              $scope.operatorTask.specialty = $scope.task.specialty;
-              $scope.operatorTask.date = $scope.task.date;
-              $scope.operatorTask.status = $scope.task.status;
-              $scope.operatorTask.timeRange = $scope.task.timeRange;
-
-              $scope.operatorTask.$save()
-                .then(function() {
-                  $scope.modalInstance.close('Create Button Clicked');
-                  toastr.success('Suas informações foram salvas com sucesso!');
-                })
-                .catch(function() {
-                  toastr.error("Suas informações não foram salvas.", 'Erro');
-                })
+          operatorsRef.child(taskToAdd.operator).child('tasks').child(ref.key).set({
+            hospital: taskToAdd.hospital,
+            specialty: taskToAdd.specialty,
+            date: taskToAdd.date,
+            status: taskToAdd.status,
+            timeRange: taskToAdd.timeRange
+          }).then(function() {
+              $scope.modalInstance.close('Create Button Clicked');
+              toastr.success('Suas informações foram salvas com sucesso!');
             })
+            .catch(function() {
+              toastr.error("Suas informações não foram salvas.", 'Erro');
+            });
         })
         .catch(function() {
           toastr.error("Suas informações não foram salvas.", 'Erro');
@@ -111,32 +103,23 @@
     };
 
     $scope.save = function() {
-      $scope.tasks.$save($scope.task)
+      var taskToAdd = $scope.task;
+      $scope.tasks.$save(taskToAdd)
         .then(function(ref) {
-          var operatorTaskRef = operatorsRef.child($scope.task.operator).child('tasks').child(ref.key);
-          $scope.operatorTask = $firebaseObject(operatorTaskRef);
-
-          $scope.operatorTask.$loaded()
-            .then(function() {
-              // Remove unnecessary key
-              $scope.task.operator = null;
-
-              // Add task to operator
-              $scope.operatorTask.hospital = $scope.task.hospital;
-              $scope.operatorTask.specialty = $scope.task.specialty;
-              $scope.operatorTask.date = $scope.task.date;
-              $scope.operatorTask.done = $scope.task.status;
-              $scope.operatorTask.done = $scope.task.timeRange;
-
-              $scope.operatorTask.$save()
-                .then(function() {
-                  $scope.modalInstance.close('Create Button Clicked');
-                  toastr.success('Suas informações foram salvas com sucesso!');
-                })
-                .catch(function() {
-                  toastr.error("Suas informações não foram salvas.", 'Erro');
-                })
+          operatorsRef.child(taskToAdd.operator).child('tasks').child(ref.key).set({
+            hospital: taskToAdd.hospital,
+            specialty: taskToAdd.specialty,
+            date: taskToAdd.date,
+            status: taskToAdd.status,
+            timeRange: taskToAdd.timeRange
+          }).then(function() {
+              $scope.modalInstance.close('Create Button Clicked');
+              toastr.success('Suas informações foram salvas com sucesso!');
             })
+            .catch(function() {
+              toastr.error("Suas informações não foram salvas.", 'Erro');
+            });
+
         })
         .catch(function() {
           toastr.error("Suas informações não foram salvas.", 'Erro');

@@ -1,4 +1,55 @@
 @import 'common';
+@import "theme/_socicon.scss";
+@import "theme/_layout.scss";
+@import 'theme/buttons.scss';
+@import 'app/form.scss';
+
+.auth-main {
+  @include main-background();
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.auth-block {
+  width: 540px;
+  margin: 0 auto;
+  border-radius: 5px;
+  @include bg-translucent-dark(0.55);
+  color: #fff;
+  padding: 32px;
+  h1 {
+    font-weight: $font-light;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  p {
+    font-size: 16px;
+  }
+  a {
+    text-decoration: none;
+    outline: none;
+    transition: all 0.2s ease;
+    color: $primary;
+    &:hover {
+      color: $primary-dark;
+    }
+  }
+
+  .control-label {
+    padding-top: 11px;
+    color: #ffffff;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+}
+
+.btn-auth {
+  color: #ffffff!important;
+}
 
 // injector
 // endinjector

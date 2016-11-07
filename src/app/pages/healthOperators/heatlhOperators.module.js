@@ -1,20 +1,20 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.tasks', [])
+  angular.module('BlurAdmin.pages.healthOperators', [])
     .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('dashboard.tasks', {
-        url: '/tasks',
-        templateUrl: 'app/pages/tasks/tasks.html',
-        title: 'Tarefas',
-        controller: 'TasksCtrl',
+      .state('dashboard.healthOperators', {
+        url: '/healthOperators',
+        templateUrl: 'app/pages/healthOperators/healthOperators.html',
+        title: 'Operadoras',
+        controller: 'HealthOperatorsCtrl',
         sidebarMeta: {
-          icon: 'ion-ios-paper',
-          order: 15,
+          icon: 'ion-ios-pulse-strong',
+          order: 10,
         },
         resolve: {
           // controller will not be loaded until $requireSignIn resolves

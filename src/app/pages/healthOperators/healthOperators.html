@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-12"
+       ba-panel
+       ba-panel-title="OPERADORAS">
+    <div class="horizontal-scroll">
+      <div class="form-group select-page-size-wrap ">
+        <div class="add-row-editable-table">
+          <button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/healthOperatorNewModal.html', 'lg', {})">Nova Operadora</button>
+        </div>
+        <label>Linhas por página
+          <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                  ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+          </select>
+        </label>
+      </div>
+      <table class="table" st-safe-src="healthOperators" st-table="smartTableData">
+        <thead>
+        <tr class="sortable ">
+          <th st-sort="name">Nome</th>
+          <th>Ações</th>
+        </tr>
+        <tr>
+          <th><input st-search="name" placeholder="Buscar Nome" class="input-sm form-control search-input"
+                     type="search"/></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in smartTableData">
+          <td>{{item.name}}</td>
+          <td>
+            <button type="button" class="btn btn-primary editable-table-button btn-xs" data-toggle="modal" ng-click="open('app/pages/ui/modals/modalTemplates/healthOperatorEditModal.html', 'lg', item)">Editar</button>
+            <button type="button" class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/ui/modals/modalTemplates/operatorRemoveModal.html', 'sm', item)">Deletar</button>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="6" class="text-center">
+            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

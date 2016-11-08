@@ -53,4 +53,4 @@ build
 /release
 /bower_components
 
-.tmp
+.tmp/

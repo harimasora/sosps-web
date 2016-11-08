@@ -80,12 +80,13 @@
 
           $scope.tasks.$add(taskToAdd)
             .then(function (ref) {
-              operatorsRef.child(taskToAdd.operator).child('tasks').child(ref.key).set({
-                hospital: taskToAdd.hospital,
-                specialty: taskToAdd.specialty,
-                date: taskToAdd.date,
-                status: taskToAdd.status,
-                timeRange: taskToAdd.timeRange
+              var taskToOperator = $scope.tasks.$getRecord(ref.key);
+              operatorsRef.child(taskToOperator.operator).child('tasks').child(taskToOperator.$id).set({
+                hospital: taskToOperator.hospital,
+                specialty: taskToOperator.specialty,
+                date: taskToOperator.date,
+                status: taskToOperator.status,
+                timeRange: taskToOperator.timeRange
               }).then(function() {
                   toastr.success('Suas informações foram salvas com sucesso!');
                 })

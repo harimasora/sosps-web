@@ -54,7 +54,7 @@
             date: taskToAdd.date,
             status: taskToAdd.status,
             timeRange: taskToAdd.timeRange,
-            watingTime: taskToAdd.watingTime,
+            watingTime: taskToAdd.watingTime == null ? 0 : taskToAdd.watingTime,
             updateOn: taskToAdd.updateOn
           }).then(function() {
               // Update hospital with time

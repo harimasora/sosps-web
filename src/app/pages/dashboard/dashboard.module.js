@@ -34,7 +34,7 @@
                 }],
                 //Here i check if a user has admin rights, note that i pass currentAuth and waitForAuth to this function to make sure those are resolves before this function
                 "canAccess": function (currentAuth, waitForAuth, Rights) {
-                  return Rights.hasOperatorAccess(currentAuth);
+                  return Rights.hasAdminAccess(currentAuth);
                 }
             }
         });

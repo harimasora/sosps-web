@@ -64,8 +64,8 @@
                             var hospital = $firebaseObject(hospitalRef);
 
                             hospital.$loaded().then(function () {
-                                var watingTime = {};
-                                var updateOn = {};
+                                var watingTime = hospital.watingTime ? hospital.watingTime : {};
+                                var updateOn = hospital.updateOn ? hospital.updateOn : {};
                                 watingTime[taskToAdd.specialty] = taskToAdd.watingTime;
                                 updateOn[taskToAdd.specialty] = taskToAdd.updateOn;
                                 hospital.watingTime = watingTime;

@@ -63,8 +63,12 @@
                 var hospital = $firebaseObject(hospitalRef);
 
                 hospital.$loaded().then(function () {
-                  hospital.watingTime = taskToAdd.watingTime;
-                  hospital.updateOn = taskToAdd.updateOn;
+                  var watingTime = {};
+                  var updateOn = {};
+                  watingTime[taskToAdd.specialty] = taskToAdd.watingTime;
+                  updateOn[taskToAdd.specialty] = taskToAdd.updateOn;
+                  hospital.watingTime = watingTime;
+                  hospital.updateOn = updateOn;
                   hospital.$save().then(function () {
                     $scope.modalInstance.close('Create Button Clicked');
                     toastr.success('Suas informações foram salvas com sucesso!');

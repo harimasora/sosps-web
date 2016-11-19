@@ -18,9 +18,15 @@
           <th st-sort="timeRange">Horário</th>
           <th>Ações</th>
         </tr>
-        <!--<tr>-->
-          <!--<th><input st-search="done" placeholder="Concluído" class="input-sm form-control search-input"-->
-                     <!--type="search"/></th>-->
+        <tr>
+          <th>
+            <select st-search="status">
+              <option value="">Todos</option>
+              <option value="Pendente">Pendente</option>
+              <option value="Sem Contato">Sem Contato</option>
+              <option value="Concluído">Concluído</option>
+            </select>
+          </th>
           <!--<th><input st-search="hospital" placeholder="Buscar Hospital" class="input-sm form-control search-input"-->
                      <!--type="search"/></th>-->
           <!--<th><input st-search="operator" placeholder="Buscar Operador" class="input-sm form-control search-input"-->
@@ -30,10 +36,10 @@
           <!--<th><input st-search="date" placeholder="Buscar Data" class="input-sm form-control search-input"-->
                      <!--type="search"/></th>-->
           <!--<th></th>-->
-        <!--</tr>-->
+        </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in smartTableData | filter:{ status: '!Concluído'}">
+        <tr ng-repeat="item in smartTableData">
           <td>{{item.status}}</td>
           <td>{{hospitals.$getRecord(item.hospital).name}}</td>
           <td>{{specialties.$getRecord(item.specialty).name}}</td>

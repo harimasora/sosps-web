@@ -103,6 +103,104 @@
       }
     };
 
+    $scope.addBulkAll = function () {
+
+      function switchOperator(id) {
+        if (id == '1R0iVjzhcCaF5HUNMSyDHSaVC7N2') {
+          return 'QMzF0Gv8q7QWhEHomD5EjEgTD4B3'
+        } else {
+          return '1R0iVjzhcCaF5HUNMSyDHSaVC7N2'
+        }
+      }
+
+      var idA = '1R0iVjzhcCaF5HUNMSyDHSaVC7N2';
+      var idB = 'QMzF0Gv8q7QWhEHomD5EjEgTD4B3';
+
+      var hospitalsPSAdulto = $scope.specialties.$getRecord('PSAdulto').hospitals;
+      var hospitalsPSPediatria = $scope.specialties.$getRecord('PSPediatria').hospitals;
+      var operator = idA; // Initial specialty
+
+      var timesArr = ['06h às 08h', '08h às 10h', '10h às 12h', '12h às 14h', '15h às 17h', '17h às 19h', '19h às 21h', '21h às 23h'];
+
+      $scope.task.status = 'Pendente';
+      $scope.task.date = $scope.task.date.getTime();
+
+      // Need both hospitals specialties arrays
+      if (hospitalsPSAdulto && hospitalsPSPediatria) {
+
+        // Transform them into an hospital ids array
+        hospitalsPSAdulto = Object.keys(hospitalsPSAdulto);
+        hospitalsPSPediatria = Object.keys(hospitalsPSPediatria);
+
+        for(var t=0; t<timesArr.length; t++) {
+          var time = timesArr[t];
+          for(var a=0; a<hospitalsPSAdulto.length; a++){
+            var adultoId = hospitalsPSAdulto[a];
+            var adultoTaskToAdd = $scope.task;
+            adultoTaskToAdd.specialty = 'PSAdulto';
+            adultoTaskToAdd.hospital = adultoId;
+            adultoTaskToAdd.operator = operator;
+            adultoTaskToAdd.timeRange = time;
+            $scope.tasks.$add(adultoTaskToAdd)
+              .then(function (ref) {
+                var adultoTaskToOperator = $scope.tasks.$getRecord(ref.key);
+                operatorsRef.child(adultoTaskToOperator.operator).child('tasks').child(adultoTaskToOperator.$id).set({
+                  hospital: adultoTaskToOperator.hospital,
+                  specialty: adultoTaskToOperator.specialty,
+                  date: adultoTaskToOperator.date,
+                  status: adultoTaskToOperator.status,
+                  timeRange: adultoTaskToOperator.timeRange
+                }).then(function() {
+                    toastr.success('Suas informações foram salvas com sucesso!');
+                  })
+                  .catch(function(error) {
+                    console.log(error);
+                    toastr.error("Suas informações não foram salvas.", 'Erro');
+                  })
+              })
+              .catch(function(error) {
+                console.log(error);
+                toastr.error("Suas informações não foram salvas.", 'Erro');
+              })
+          }
+          operator = switchOperator(operator);
+          for(var p=0; p<hospitalsPSPediatria.length; p++){
+            var pediatriaId = hospitalsPSPediatria[p];
+            var pediatriaTaskToAdd = $scope.task;
+            pediatriaTaskToAdd.specialty = 'PSPediatria';
+            pediatriaTaskToAdd.hospital = pediatriaId;
+            pediatriaTaskToAdd.operator = operator;
+            pediatriaTaskToAdd.timeRange = time;
+            //Add tasks
+            $scope.tasks.$add(pediatriaTaskToAdd)
+              .then(function (ref) {
+                var pediatriaTaskToOperator = $scope.tasks.$getRecord(ref.key);
+                operatorsRef.child(pediatriaTaskToOperator.operator).child('tasks').child(pediatriaTaskToOperator.$id).set({
+                  hospital: pediatriaTaskToOperator.hospital,
+                  specialty: pediatriaTaskToOperator.specialty,
+                  date: pediatriaTaskToOperator.date,
+                  status: pediatriaTaskToOperator.status,
+                  timeRange: pediatriaTaskToOperator.timeRange
+                }).then(function() {
+                    toastr.success('Suas informações foram salvas com sucesso!');
+                  })
+                  .catch(function(error) {
+                    console.log(error);
+                    toastr.error("Suas informações não foram salvas.", 'Erro');
+                  })
+              })
+              .catch(function(error) {
+                console.log(error);
+                toastr.error("Suas informações não foram salvas.", 'Erro');
+              })
+          }
+        }
+        $scope.modalInstance.close('Create Button Clicked');
+      } else {
+        toastr.error("É necessário haver hospitais cadastrados em Infantil e Adulto", 'Erro');
+      }
+    };
+
     $scope.save = function() {
       var taskToAdd = $scope.task;
       $scope.tasks.$save(taskToAdd)

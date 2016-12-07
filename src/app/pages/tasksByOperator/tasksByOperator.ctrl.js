@@ -27,6 +27,19 @@
 
     $scope.smartTablePageSize = 10;
 
+      $scope.setColor = function(status) {
+          switch (status) {
+              case "Concluído":
+                  return 'success';
+              case 'Pendente':
+                  return 'warning';
+              case 'Sem contato':
+                  return 'danger';
+              default:
+                  return null;
+          }
+      };
+
     $scope.open = function (page, size, item) {
 
       $scope.task = item;

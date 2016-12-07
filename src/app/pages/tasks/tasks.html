@@ -51,7 +51,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in smartTableData">
+        <tr ng-class="setColor(item.status)" ng-repeat="item in smartTableData">
           <td>{{item.status}}</td>
           <td>{{hospitals.$getRecord(item.hospital).name}}</td>
           <td>{{operators.$getRecord(item.operator).name}}</td>

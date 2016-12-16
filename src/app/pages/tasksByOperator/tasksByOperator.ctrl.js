@@ -16,6 +16,8 @@
 
     var allTasksRef = firebase.database().ref().child('taskList');
 
+    var watingTimeHistoryRef = firebase.database().ref().child('watingTimeHistory');
+
     var hospitalsRef = firebase.database().ref().child('hospitals');
     $scope.hospitals = $firebaseArray(hospitalsRef);
 
@@ -60,7 +62,6 @@
             $scope.tasks.$save(taskToAdd)
               .then(function() {
                   // Update All Tasks List
-
                   allTasksRef.child(taskToAdd.$id).set({
                       operator: currentAuth.uid,
                       hospital: taskToAdd.hospital,
@@ -75,6 +76,13 @@
                         if (taskToAdd.status == 'Concluído') {
                             var hospitalRef = hospitalsRef.child(taskToAdd.hospital);
                             var hospital = $firebaseObject(hospitalRef);
+
+                            var watingTimeHistory = $firebaseObject(watingTimeHistoryRef.child(taskToAdd.hospital).child(taskToAdd.specialty));
+
+                            watingTimeHistory.$loaded().then(function () {
+                                watingTimeHistory[taskToAdd.updateOn] = taskToAdd.watingTime;
+                                watingTimeHistory.$save();
+                            });
 
                             hospital.$loaded().then(function () {
                                 var watingTime = hospital.watingTime ? hospital.watingTime : {};

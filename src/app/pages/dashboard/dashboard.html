@@ -6,3 +6,35 @@
     <div ng-include="'app/pages/charts/amCharts/barChart/clickChart.html'"></div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12"
+       ba-panel
+       ba-panel-title="Tempo de espera - Adulto"
+       ba-panel-class="with-scroll">
+    <div ng-controller="PSAdultoLineChartCtrl">
+      <p>Selecione o Hospital</p>
+      <div class="form-group">
+        <select class="form-control selectpicker" ng-model="selected.hospitalId" ng-change="render()">
+          <option ng-repeat="hospital in hospitals" ng-value="hospital.$id">{{hospital.name}}</option>
+        </select>
+      </div>
+      <div id="PSAdultoLineChart" class="admin-chart"></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12"
+       ba-panel
+       ba-panel-title="Tempo de espera - Infantil"
+       ba-panel-class="with-scroll">
+    <div ng-controller="PSPediatriaLineChartCtrl">
+      <p>Selecione o Hospital</p>
+      <div class="form-group">
+        <select class="form-control selectpicker" ng-model="selected.hospitalId" ng-change="render()">
+          <option ng-repeat="hospital in hospitals" ng-value="hospital.$id">{{hospital.name}}</option>
+        </select>
+      </div>
+      <div id="PSPediatriaLineChart" class="admin-chart"></div>
+    </div>
+  </div>
+</div>

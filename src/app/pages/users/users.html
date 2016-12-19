@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-12"
+       ba-panel
+       ba-panel-title="USUÁRIOS">
+    <div class="horizontal-scroll">
+      <div class="form-group select-page-size-wrap ">
+        <label>Linhas por página
+          <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                  ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25,50,100]">
+          </select>
+        </label>
+      </div>
+      <table class="table" st-safe-src="users" st-table="smartTableData">
+        <thead>
+        <tr class="sortable ">
+          <th st-sort="id">ID</th>
+          <th st-sort="name">Nome</th>
+          <th st-sort="email">Email</th>
+          <th st-sort="address">Endereço</th>
+          <th st-sort="birth_date">Nascimento</th>
+        </tr>
+        <tr>
+          <th><input st-search="$id" placeholder="Buscar ID" class="input-sm form-control search-input" type="search"/></th>
+          <th><input st-search="name" placeholder="Buscar Nome" class="input-sm form-control search-input" type="search"/></th>
+          <th><input st-search="email" placeholder="Buscar Email" class="input-sm form-control search-input" type="search"/></th>
+          <th><input st-search="address" placeholder="Buscar Endereço" class="input-sm form-control search-input" type="search"/></th>
+          <!--<th><input st-search="photoURL" placeholder="Buscar URL da foto" class="input-sm form-control search-input" type="search"/></th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in smartTableData">
+          <td>{{item.$id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.address}}</td>
+          <td>{{item.birth_date | date}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="6" class="text-center">
+            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

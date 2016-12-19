@@ -11,6 +11,7 @@
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.home',
     'BlurAdmin.pages.hospitals',
+    'BlurAdmin.pages.users',
     'BlurAdmin.pages.operators',
     'BlurAdmin.pages.healthOperators',
     'BlurAdmin.pages.tasks',
